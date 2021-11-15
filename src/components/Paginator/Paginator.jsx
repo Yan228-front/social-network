@@ -29,6 +29,7 @@ let Paginator = ({
           onClick={() => {
             setPortionNumber(portionNumber - 1);
           }}
+          className={classes.button}
         >
           PREV
         </button>
@@ -63,6 +64,7 @@ let Paginator = ({
           onClick={() => {
             setPortionNumber(portionNumber + 1);
           }}
+          className={classes.button}
         >
           NEXT
         </button>

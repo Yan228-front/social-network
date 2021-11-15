@@ -1,18 +1,19 @@
 .nav {
   grid-area: n;
-  background-color: brown;
-  padding: 20px;
+  background-color: #808080;
+  border: 1px solid #00ffff;
 }
 .item {
   font-size: 30px;
   padding: 8px;
+  border: 1px solid #00ffff;
 }
 a {
   color: white;
 }
 a:hover {
-  color: blueviolet;
-}
-.item a.active {
   color: gold;
+  }
+.item a.active {
+  color: #00ffff;
 }

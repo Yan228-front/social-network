@@ -13,12 +13,13 @@ const Navbar = () => {
         <NavLink to='/dialogs' activeClassName={classes.active}>
           Сообщения
         </NavLink>
-        <div>
-          <NavLink to='/users' activeClassName={classes.active}>
-            Users
-          </NavLink>
-        </div>
       </div>
+      <div className={classes.item}>
+        <NavLink to='/users' activeClassName={classes.active}>
+          Users
+        </NavLink>
+      </div>
+
       <div className={classes.item}>
         <NavLink to='/news' activeClassName={classes.active}>
           Новости
@@ -33,11 +34,11 @@ const Navbar = () => {
         <NavLink to='/settings' activeClassName={classes.active}>
           Настройки
         </NavLink>
-        <div>
-          <NavLink to='/friend' activeClassName={classes.active}>
-            Friend
-          </NavLink>
-        </div>
+      </div>
+      <div className={classes.item}>
+        <NavLink to='/friend' activeClassName={classes.active}>
+          Friend
+        </NavLink>
       </div>
     </nav>
   );

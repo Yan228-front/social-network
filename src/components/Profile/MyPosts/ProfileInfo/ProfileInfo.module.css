@@ -5,4 +5,20 @@
 .profilePhoto {
   width: 200px;
   height: 200px;
+  border: 2px solid #00ffff;
+  border-radius: 30px;
+}
+.inputWrapper {
+}
+
+.inputFile {
+  color: white;
+  font-size: 20px;
+}
+
+.profileName {
+  color: white;
+  font-size: 20px;
+  margin-left: 2px;
+  
 }

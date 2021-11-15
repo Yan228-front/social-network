@@ -1,0 +1,32 @@
+.formik {
+}
+
+.form {
+  color: white;
+  font-size: 20px;
+  margin-left: 8px;
+}
+
+.input {
+  width: 99%;
+  padding: 10px 15px;
+  border: 2px solid #00ffff;
+  border-radius: 4px;
+  font-size: 20px;
+
+  box-sizing: border-box;
+}
+.inputCheckbox {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+}
+
+.button {
+  background-color: #808080;
+  color: white;
+  font-size: 20px;
+  border: 2px solid #00ffff;
+  border-radius: 7px;
+}

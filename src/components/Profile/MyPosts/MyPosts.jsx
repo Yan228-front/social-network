@@ -3,47 +3,9 @@ import Post from "./Posts/Post";
 import React from "react";
 import { useFormik } from "formik";
 
-const MyPosts = (props) => {
-  // let postsElement = props.posts.map((p) => (
-  //   <Post message={p.message} likesCount={p.likesCount} />
-  // ));
-
-  // let newPostElement = React.createRef();
-
-  // let onAddPost = () => {
-  //   props.addPost();
-  // };
-
-  // let onPostChange = () => {
-  //   let text = newPostElement.current.value;
-  //   props.updateNewPostText(text);
-  // };
-
-  return (
-    <div className={classes.postBlock}>
-      <MyPostForm />
-      {/* <h3>My post</h3>
-
-      <div>
-        <textarea
-          onChange={onPostChange}
-          ref={newPostElement}
-          value={props.newPostText}
-        />
-      </div>
-
-      <div>
-        <button onClick={onAddPost}>Add post</button>
-      </div>
-
-      <div className={classes.posts}>{postsElement}</div> */}
-    </div>
-  );
-};
-
 const MyPostForm = (props) => {
   let postsElement = props.posts.map((p) => (
-    <Post message={p.message} likesCount={p.likesCount} />
+    <Post key={p.id} message={p.message} likesCount={p.likesCount} />
   ));
 
   let newPostElement = React.createRef();
@@ -68,7 +30,7 @@ const MyPostForm = (props) => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form onSubmit={formik.handleSubmit} className={classes.form}>
       <div>
         <label htmlFor='post'>My post</label>
       </div>
@@ -78,9 +40,13 @@ const MyPostForm = (props) => {
         onChange={onPostChange}
         ref={newPostElement}
         value={props.newPostText}
+        className={classes.textarea}
       />
-
-      <button onClick={onAddPost}>Add post</button>
+      <div>
+        <button onClick={onAddPost} className={classes.bottonPost}>
+          Add post
+        </button>
+      </div>
       <div className={classes.posts}>{postsElement}</div>
     </form>
   );

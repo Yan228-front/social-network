@@ -1,8 +1,10 @@
-import { Field, Formik } from "formik";
+import { Formik } from "formik";
 import * as yup from "yup";
 import { connect } from "react-redux";
 import { login } from "../../redux/auth-reducer";
 import { Redirect } from "react-router";
+import classes from "./Login.module.css";
+import React from "react";
 
 // const validatePassword = (values) => {
 //   let error = "";
@@ -22,8 +24,12 @@ let LoginFormik = (props) => {
     email: yup.string().email("Введите верный email").required("Обязательно"),
     password: yup
       .string()
+      // .test("Неверный пароль", (values) => {
+      //   return props.data.password !== values;
+      // })
       .typeError("Должно быть строкой")
       .required("Обязательно"),
+
     rememberMe: yup.boolean(),
   });
 
@@ -32,14 +38,15 @@ let LoginFormik = (props) => {
   }
 
   return (
-    <div>
+    <div className={classes.formik}>
       <Formik
         initialValues={{
           email: "",
           password: "",
+          rememberMe: "",
         }}
         validateOnBlur
-        onSubmit={(formData) => {
+        onSubmit={(formData, ...тзsetSubmit) => {
           console.log(formData.email, formData.password, formData.rememberMe);
           props.login(formData.email, formData.password, formData.rememberMe);
         }}
@@ -55,12 +62,12 @@ let LoginFormik = (props) => {
           handleSubmit,
           dirty,
         }) => (
-          <div className={"form"}>
+          <div className={classes.form}>
             <p>
               <label htmlFor={"email"}>Email</label>
               <br />
               <input
-                className={"input"}
+                className={classes.input}
                 type={"text"}
                 name={"email"}
                 onChange={handleChange}
@@ -84,12 +91,12 @@ let LoginFormik = (props) => {
               <label htmlFor={"password"}>Пароль</label>
               <br />
               <input
-                className={"input"}
                 type={"password"}
                 name={"password"}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.password}
+                className={classes.input}
               />
             </p>
             {touched.password && errors.password && (
@@ -100,12 +107,12 @@ let LoginFormik = (props) => {
               <label htmlFor={"rememberMe"}>Запомнить меня</label>
               <br />
               <input
-                className={"input"}
                 type={"checkbox"}
                 name={"rememberMe"}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.rememberMe}
+                className={classes.inputCheckbox}
               />
             </p>
 
@@ -113,6 +120,7 @@ let LoginFormik = (props) => {
               disabled={!isValid && !dirty}
               onClick={handleSubmit}
               type={"submit"}
+              className={classes.button}
             >
               Отправить
             </button>
@@ -124,6 +132,7 @@ let LoginFormik = (props) => {
 };
 
 const mapStateToProps = (state) => ({
+  captchaUrl: state.auth.captchaUrl,
   isAuth: state.auth.isAuth,
 });
 

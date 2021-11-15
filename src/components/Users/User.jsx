@@ -11,6 +11,7 @@ let User = ({ user, followingInProgress, unfollow, follow }) => {
             <img
               src={user.photos.small != null ? user.photos.small : userPhoto}
               className={classes.userPhoto}
+              alt='userPhoto'
             />
           </NavLink>
         </div>
@@ -21,6 +22,7 @@ let User = ({ user, followingInProgress, unfollow, follow }) => {
               onClick={() => {
                 unfollow(user.id);
               }}
+              className={classes.subscription}
             >
               Unfollow
             </button>
@@ -30,6 +32,7 @@ let User = ({ user, followingInProgress, unfollow, follow }) => {
               onClick={() => {
                 follow(user.id);
               }}
+              className={classes.subscription}
             >
               Follow
             </button>
@@ -37,7 +40,7 @@ let User = ({ user, followingInProgress, unfollow, follow }) => {
         </div>
       </span>
 
-      <span>
+      <span className={classes.userInfo}>
         <span>
           <div>{user.name}</div>
           <div>{user.status}</div>

@@ -14,9 +14,10 @@ import { compose } from "redux";
 import { initializeApp } from "./redux/app-reducer";
 import Preloader from "./common/Preloader/Preloader";
 import store from "./redux/redux-store";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Switch, Redirect } from "react-router-dom";
 import { Provider } from "react-redux";
 import withSuspense from "./hoc/withSuspense";
+
 const DialogsConteiner = React.lazy(() =>
   import("./components/Dialogs/DialogsConteiner")
 );
@@ -38,17 +39,20 @@ class App extends React.Component {
         <HeaderConteiner />
         <Navbar />
         <div className='app-wrapper-content'>
-          <Route path='/dialogs' render={withSuspense(DialogsConteiner)} />
-          <Route
-            path='/profile/:userId?'
-            render={withSuspense(ProfileConteiner)}
-          />
-          <Route path='/news' render={() => <News />} />
-          <Route path='/music' render={() => <Music />} />
-          <Route path='/settings' render={() => <Settings />} />
-          <Route path='/friend' render={() => <Friend />} />
-          <Route path='/users' render={() => <UsersConteiner />} />
-          <Route path='/login' render={() => <LoginFormik />} />
+          <Switch>
+            <Route exact path='/' render={() => <Redirect to={"/profile"} />} />
+            <Route path='/dialogs' render={withSuspense(DialogsConteiner)} />
+            <Route
+              path='/profile/:userId?'
+              render={withSuspense(ProfileConteiner)}
+            />
+            <Route path='/news' render={() => <News />} />
+            <Route path='/music' render={() => <Music />} />
+            <Route path='/settings' render={() => <Settings />} />
+            <Route path='/friend' render={() => <Friend />} />
+            <Route path='/users' render={() => <UsersConteiner />} />
+            <Route path='/login' render={() => <LoginFormik />} />
+          </Switch>
         </div>
       </div>
     );
@@ -67,7 +71,7 @@ const AppConteiner = compose(
 //basename={procces.env.PUBLIC_URL}
 const SamuraiJsApp = (props) => {
   return (
-    <BrowserRouter >
+    <BrowserRouter>
       <Provider store={store}>
         <AppConteiner />
       </Provider>

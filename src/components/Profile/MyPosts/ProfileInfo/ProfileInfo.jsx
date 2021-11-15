@@ -1,26 +1,60 @@
 import Preloader from "../../../../common/Preloader/Preloader";
 import classes from "./ProfileInfo.module.css";
-
+import userPhoto from "../../../../assets/imeges/user.png";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
+import ProfileDataForm from "./ProfileDataForm";
+import { useState } from "react";
 
 const ProfileInfo = (props) => {
+  let [editMode, setEditMode] = useState(false);
+
   if (!props.profile) {
     return <Preloader />;
   }
 
+  const onMainPhotoSelected = (e) => {
+    props.savePhoto(e.target.files[0]);
+  };
+
+  const onSubmit = (boolean) => {
+    setEditMode(boolean);
+  };
+
   return (
     <div>
-      {/* <div>
-        <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP9KB8nZTvF-h0eWWDnVT7n7gTev6M3hrVXcr15AsyxDuC2COqCABVuJMg8BQXJVcScIs&usqp=CAU'></img>
-      </div> */}
       <div className={classes.descriptoinBlock}>
         <img
-          src={props.profile.photos.large}
+          src={props.profile.photos.large || userPhoto}
           className={classes.profilePhoto}
+          alt='userPhoto'
         />
+        <div className={classes.inputWrapper}>
+          {props.isOwner && (
+            <input
+              type={"file"}
+              onChange={onMainPhotoSelected}
+              className={classes.inputFile}
+            />
+          )}
+        </div>
+        {editMode ? (
+          <ProfileDataForm
+            initialValues={props.profile}
+            profile={props.profile}
+            saveProfile={props.saveProfile}
+            onSubmit={onSubmit}
+          />
+        ) : (
+          <ProfileData
+            profile={props.profile}
+            isOwner={props.isOwner}
+            goToEditMode={() => {
+              setEditMode(true);
+            }}
+          />
+        )}
 
-        <div>
-          {props.profile.fullName}
+        <div className={classes.profileName}>
           <ProfileStatusWithHooks
             status={props.status}
             updateStatus={props.updateStatus}
@@ -30,5 +64,46 @@ const ProfileInfo = (props) => {
     </div>
   );
 };
+
+const ProfileData = (props) => {
+  return (
+    <div className={classes.profileName}>
+      {props.isOwner && (
+        <div>
+          <button onClick={props.goToEditMode}>Редактировать</button>
+        </div>
+      )}
+      <div>Полное имя: {props.profile.fullName}</div>
+      <div>Ищю работу: {props.profile.lookingForAJob ? "yes" : "no"}</div>
+      {props.profile.lookingForAJob && (
+        <div>
+          Мои професиональние скилы: {props.profile.lookingForAJobDescription}
+        </div>
+      )}
+      <div>Про меня: {props.profile.aboutMe}</div>
+      {/* <div>
+        <b>Контакти</b>:
+        {Object.keys(props.profile.contacts).map((key) => {
+          return (
+            <Contact
+              key={key}
+              contactTitle={key}
+              contactValue={props.profile.contacts[key]}
+            />
+          );
+        })}
+       
+      </div> */}
+    </div>
+  );
+};
+
+// export const Contact = ({ contactTitle, contactValue }) => {
+//   return (
+//     <div className={classes.contact}>
+//       <b>{contactTitle}</b>: {contactValue}
+//     </div>
+//   );
+// };
 
 export default ProfileInfo;

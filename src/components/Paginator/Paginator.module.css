@@ -7,10 +7,22 @@
 
 .pageNumber {
   padding: 2px;
-  border: 1px, solid, grey;
+  border: 1px solid #00bfff;
+  color: white;
+  font-size: 25px;
+}
+.pageNumber:hover {
+  color: gold;
 }
 
-.pageNumber.selectedPage {
-  font-weight: bold;
-  border-color: black;
+.button {
+  background-color: #808080;
+  color: white;
+  font-size: 33px;
+  border: 2px solid #00ffff;
+  border-radius: 7px;
+}
+
+.button:hover {
+  color: gold;
 }

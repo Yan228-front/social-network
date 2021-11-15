@@ -2,5 +2,24 @@
   width: 100px;
   height: 100px;
 }
+.userInfo {
+  background-color: #808080;
+  color: white;
+  font-size: 20px;
+}
 
+.userBody {
+  margin-left: 10px;
+}
 
+.subscription {
+  background-color: #808080;
+  color: white;
+  font-size: 20px;
+  border: 1px solid #00ffff;
+  border-radius: 7px;
+}
+
+.subscription:hover {
+  color: gold;
+}
