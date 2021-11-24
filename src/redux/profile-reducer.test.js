@@ -1,5 +1,3 @@
-import { render, screen } from "@testing-library/react";
-
 import profileReducer, { addPostActionCreator } from "./profile-reducer";
 
 let state = {
@@ -17,11 +15,3 @@ test("my post", () => {
 
   expect(newPost.posts.length).toBe(4);
 });
-
-// test("my saffff", () => {
-//   let action = addPostActionCreator("it-kamasutra");
-
-//   let newPost = profileReducer(state, action);
-
-//   expect(newPost.posts[3].message).toBe("it-kamasutra");
-// });

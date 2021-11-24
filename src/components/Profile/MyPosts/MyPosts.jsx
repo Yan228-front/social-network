@@ -23,10 +23,7 @@ const MyPostForm = (props) => {
     initialValues: {
       post: "",
     },
-    onSubmit: (values) => {
-      //alert(JSON.stringify(values, null, 2));
-      //<div className={classes.posts}>{postsElement}</div>
-    },
+    onSubmit: (values) => {},
   });
 
   return (

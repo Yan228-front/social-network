@@ -68,7 +68,6 @@ const AppConteiner = compose(
   connect(mapStateToProps, { initializeApp })
 )(App);
 
-//basename={procces.env.PUBLIC_URL}
 const SamuraiJsApp = (props) => {
   return (
     <BrowserRouter>

@@ -6,27 +6,11 @@ import { Redirect } from "react-router";
 import classes from "./Login.module.css";
 import React from "react";
 
-// const validatePassword = (values) => {
-//   let error = "";
-//   const passwordRegex = /(?=.*[0-9])/;
-//   if (!values) {
-//     error = "*Required";
-//   } else if (values.length < 8) {
-//     error = "*Password must be 8 characters long.";
-//   } else if (!passwordRegex.test(values)) {
-//     error = "*Invalid password. Must contain one number.";
-//   }
-//   return error;
-// };
-
 let LoginFormik = (props) => {
   const valudationSchema = yup.object().shape({
     email: yup.string().email("Введите верный email").required("Обязательно"),
     password: yup
       .string()
-      // .test("Неверный пароль", (values) => {
-      //   return props.data.password !== values;
-      // })
       .typeError("Должно быть строкой")
       .required("Обязательно"),
 
@@ -78,14 +62,6 @@ let LoginFormik = (props) => {
             {touched.email && errors.email && (
               <p className={"error"}>{errors.email}</p>
             )}
-
-            {/* <Field
-              type='password'
-              name='password'
-              validate={validatePassword}
-            />
-
-            {errors.password && <div>{errors.password}</div>} */}
 
             <p>
               <label htmlFor={"password"}>Пароль</label>

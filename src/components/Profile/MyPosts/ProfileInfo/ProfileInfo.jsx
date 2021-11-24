@@ -81,29 +81,8 @@ const ProfileData = (props) => {
         </div>
       )}
       <div>Про меня: {props.profile.aboutMe}</div>
-      {/* <div>
-        <b>Контакти</b>:
-        {Object.keys(props.profile.contacts).map((key) => {
-          return (
-            <Contact
-              key={key}
-              contactTitle={key}
-              contactValue={props.profile.contacts[key]}
-            />
-          );
-        })}
-       
-      </div> */}
     </div>
   );
 };
-
-// export const Contact = ({ contactTitle, contactValue }) => {
-//   return (
-//     <div className={classes.contact}>
-//       <b>{contactTitle}</b>: {contactValue}
-//     </div>
-//   );
-// };
 
 export default ProfileInfo;

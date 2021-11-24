@@ -65,25 +65,6 @@ const ProfileDataForm = (props) => {
             value={formik.values.aboutMe}
           />
         </div>
-        {/* <div>
-          <label htmlFor='contacts'>Контакты</label>:
-          {Object.keys(props.profile.contacts).map((key) => {
-            return (
-              <div key={key}>
-                <b>
-                  {key}:{" "}
-                  <input
-                    id='contacts'
-                    name={"contacts." + key}
-                    //type='text'
-                    onChange={formik.handleChange}
-                    //value={formik.values.contacts}
-                  />
-                </b>
-              </div>
-            );
-          })}
-        </div> */}
       </div>
     </form>
   );
